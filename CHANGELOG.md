@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.1 — 2026-11-09
+
+- `roast` now points to the right sections of the kill skill. It runs sections 0–5, so the safety rules and the scoring are no longer skipped, and it takes the verdict card from section 6 instead of section 5.
+
 ## 0.6.0 — 2026-11-09
 
 **Features**

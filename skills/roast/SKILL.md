@@ -10,11 +10,11 @@ A roast is the kill-my-idea verdict told as stand-up. It is shareable on purpose
 ## Steps
 
 1. **Research and score** exactly as in
-   `${CLAUDE_PLUGIN_ROOT}/skills/kill/SKILL.md`, sections 1–4: the kill-shot checklist,
-   the evidence rules and the scorecard. Famous companies need no questions; use public,
+   `${CLAUDE_PLUGIN_ROOT}/skills/kill/SKILL.md`, sections 0–5: the safety rules, the brief,
+   the kill-shot checklist, the evidence rules, the metrics and the scorecard. Famous companies need no questions; use public,
    well-documented facts.
 2. **Write the roast** to `ideas/<YYYY-MM>-<slug>/roast.md` in this order:
-   - the **verdict card** (section 5 of the kill skill), then the badge;
+   - the **verdict card** (section 6 of the kill skill), then the badge;
    - **5 burns**: one line each, one fact each, one source link each. Funny comes from the
      fact itself (numbers, quotes, irony), not from insults;
    - **"The one thing that's actually good"**: one honest line;
