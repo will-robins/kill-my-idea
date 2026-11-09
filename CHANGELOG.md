@@ -2,6 +2,8 @@
 
 ## 0.6.1 — 2026-11-09
 
+- **No distribution channel now caps the score at 69.** The rule used to change only the verdict, so a 72 with no channel could not match its score band. Now the score, the verdict and every badge in the report agree. Self-check step 1 allows for the cap.
+- The scoring note in the report lists the fixed rules correctly: free alternative and saturated wave cap Competitive room, LTV : CAC below 1 caps Profit potential, and no channel caps the total. French reports now translate it.
 - `roast` now points to the right sections of the kill skill. It runs sections 0–5, so the safety rules and the scoring are no longer skipped, and it takes the verdict card from section 6 instead of section 5.
 
 ## 0.6.0 — 2026-11-09

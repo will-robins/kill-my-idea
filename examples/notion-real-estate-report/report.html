@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: 'sha256-KoDpZRm1HZr9qcJBXQqtY6Hit/FJPMjt2HSvi1G8qgc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' file: 'sha256-pWjQv0/F9W/iU5TzOX0ur9a9YkvuoWRfEyi0xqLSUdQ='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>kill-my-idea report</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -254,6 +254,9 @@ const FR = {
   "Time to MVP": "Délai avant MVP", "Sales cycle": "Cycle de vente", "Channel readiness": "Canal prêt", "Search demand": "Demande en recherche", "Trend": "Tendance", "Willingness to pay": "Disposition à payer",
   "Free alternatives": "Alternatives gratuites", "Competitor density": "Densité concurrentielle", "Differentiation": "Différenciation", "Legal and regulatory": "Juridique et réglementaire",
   "Platform dependency": "Dépendance aux plateformes", "Market risk": "Risque de marché", "Skills": "Compétences", "Assets and network": "Actifs et réseau", "Interest": "Intérêt" };
+const SCORE_NOTE = "Each criterion is the average of three sub-scores from 1 to 5. Points = score ÷ 5 × weight. Fixed rules cap Competitive room when a free equivalent exists or the idea is part of a saturated wave, cap Profit potential when LTV : CAC is below 1, and cap the total at 69 when no distribution channel exists.", SCORE_NOTE_OPEN = "Open a criterion to see its sub-scores.";
+const SCORE_NOTE_FR = "Chaque critère est la moyenne de trois sous-notes de 1 à 5. Points = note ÷ 5 × poids. Des règles fixes plafonnent l'espace concurrentiel quand une alternative gratuite existe ou que l'idée fait partie d'une vague saturée, le potentiel de profit quand LTV : CAC est inférieur à 1, et le total à 69 quand aucun canal de distribution n'existe.";
+FR[SCORE_NOTE] = SCORE_NOTE_FR; FR[SCORE_NOTE + " " + SCORE_NOTE_OPEN] = SCORE_NOTE_FR + " Ouvrez un critère pour voir ses sous-notes.";
 const FR_RX = [[/^As pitched it scores (\d+)\. Each option fixes at least one kill shot\. New scores are estimates\.$/, "Telle que présentée, l'idée obtient $1. Chaque option corrige au moins un point de rupture. Les nouvelles notes sont des estimations."],
   [/^(\d+) of (\d+) kill shots landed\.$/, "$1 points de rupture sur $2 ont touché."], [/^(\d+) competitors and alternatives found\.$/, "$1 concurrents et alternatives trouvés."],
   [/^(\d+) sources\. Every sourced number links here\.$/, "$1 sources. Chaque chiffre sourcé renvoie ici."], [/^(\d+)\/100 across seven weighted criteria and 21 sub-scores\.$/, "$1/100 sur sept critères pondérés et 21 sous-notes."],
@@ -390,7 +393,7 @@ const scoring = () => { const c = V.criteria || {}; let total = 0;
       return `<li><span class="sn">${esc(SUB[sk] || sk.replace(/_/g, " "))}</span>${bar(+v.score || 0, 5, "var(--secondary)")}<span class="num">${(+v.score || 0).toFixed(1)}</span><span class="snote">${rt(v.note || "")}${fn(v.source)}</span></li>`; }).join("")}</ul></details>`
       : `<div class="crit flat">${head}</div>`; }).join("");
   return `<div class="card rv"><div class="crit-h"><span>Criterion</span><span></span><span>Score</span><span>Points</span></div>${rows}<div class="crit-t"><span>Total</span><span class="num">${V.score ?? Math.round(total)}<span class="u"> / 100</span></span></div>
-    <p class="note">Each criterion is the average of three sub-scores from 1 to 5. Points = score ÷ 5 × weight. Fixed rules cap a criterion when a free equivalent exists, when no distribution channel exists, or when LTV : CAC is below 1. ${Object.keys(CD).length ? "Open a criterion to see its sub-scores." : ""}</p></div>`; };
+    <p class="note">${SCORE_NOTE}${Object.keys(CD).length ? " " + SCORE_NOTE_OPEN : ""}</p></div>`; };
 const KSL = Object.keys(KS).filter(k => V.kill_shots && k in V.kill_shots);
 const ksList = KSL.length ? `<ul class="ks">${KSL.map(k => { const hit = V.kill_shots[k], ev = (N.kill_shots || {})[k] || {};
   return `<li><span class="dot" style="background:${hit ? "var(--nogo-bg)" : "var(--go-bg)"};color:${hit ? "var(--nogo)" : "var(--go)"}">${ic(hit ? "x" : "check")}</span>
