@@ -24,7 +24,8 @@ lowercase ASCII, 2–4 words.
 - **No secrets, no actions.** Never paste API keys, tokens or personal data into the report.
   Never publish, buy, sign up or contact anyone.
 - **Self-check before writing the files:**
-  1. The total recomputes from the criteria. Each criterion is the average of its
+  1. The total recomputes from the criteria (then capped at 69 when there's no credible
+     distribution channel). Each criterion is the average of its
      sub-scores, rounded to 0.5.
   2. Every metric with `basis: "sourced"` has a URL. Every estimate has its reasoning.
   3. The hard rules are applied, and the verdict matches the score band.
@@ -143,7 +144,8 @@ Verdict: **GO** ≥ 70 · **PIVOT** 50–69 · **NO-GO** < 50.
 
 Hard rules:
 - A free equivalent exists and the user has no clear edge → Competitive room ≤ 1.5.
-- No credible distribution channel → the verdict cannot be GO.
+- No credible distribution channel → the total is capped at 69, so the verdict cannot be GO.
+  Apply the cap after computing the total, and say in the report that it was applied.
 - Saturated wave (10 or more near-identical launches in 12 months) and no specific edge → Competitive room ≤ 1.5 and differentiation ≤ 1.5.
 - LTV : CAC below 1 with no path to fix it → Profit potential ≤ 2.
 
